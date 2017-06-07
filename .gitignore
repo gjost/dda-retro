@@ -1,0 +1,5 @@
+*~
+*.pyc
+*.sqlite3
+ddaretro/ddaretro/settings.py
+venv/
