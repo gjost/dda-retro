@@ -29,6 +29,12 @@ ALLOWED_HOSTS = [
     '192.168.56.188',
 ]
 
+# ----------------------------------------------------------------------
+
+DDR_API = 'http://ddr.densho.org/api/0.2'
+USER_AGENT = 'dda-retro'
+
+# ----------------------------------------------------------------------
 
 # Application definition
 
@@ -39,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #
+    'archive',
 ]
 
 MIDDLEWARE = [
@@ -51,7 +59,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'ddaretro.urls'
+ROOT_URLCONF = 'archive.urls'
 
 TEMPLATES = [
     {

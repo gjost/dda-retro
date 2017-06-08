@@ -12,3 +12,4 @@ django-redis-cache
 django-redis-sessions
 gunicorn                           # MIT      y
 redis                              # MIT      y
+requests

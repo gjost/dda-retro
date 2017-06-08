@@ -1,0 +1,161 @@
+<h1>Densho</h1>
+
+<a href="">Help</a>
+<br/>
+ 	
+<ul>
+
+  <li>
+    <a href="{% url "nolist" %}" target="list" onclick="javascript:top.content.location='{% url "topics" %}';ob_os(this);">
+      Topics
+    </a>
+    <ul>
+      {% for term in topics %}
+      <li>
+        <a href="{% url "term-objects" %}?id={{ term.id }}" target="list" onclick="javascript:top.content.location='{% url "term-detail" %}?id={{ term.id }};ob_os(this);">{{ term.title }}</a>
+        {% if term.len %}({{ term.len }}){% endif %}
+        {% if term.objects %}
+        <ul>
+          {% for term in term.objects %}
+          <li>
+            <a href="{% url "term-objects" %}?id={{ term.id }}" target="list" onclick="javascript:top.content.location='{% url "term-detail" %}?id={{ term.id }};ob_os(this);">{{ term.title }}</a>
+            {% if term.len %}({{ term.len }}){% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </li>
+
+  <li>
+    <a href="{% url "nolist" %}" target="list" onclick="javascript:top.content.location='{% url "doc-collections" %}';ob_os(this);">
+      Photo/Document Collections
+    </a>
+    <ul>
+      <li>
+        <a href="{% url "nolist" %}" target="list" onclick="javascript:top.content.location='{% url "institutional-collections" %}';ob_os(this);">
+          Institutional Collections
+        </a>
+        <ul>
+          {% for collection in doc.institutional.objects %}
+          <li>
+            <a target="list"
+               href="{% url "collection-objects" %}?id={{ collection.id }}"
+               onclick="javascript:top.content.location='{% url "collection-detail" %}?id={{ collection.id }}';ob_os(this);">
+              {{ collection.title }}
+            </a>
+            {% if collection.len %}({{ collection.len }}){% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </li>
+      <li>
+        <a href="{% url "nolist" %}" target="list" onclick="javascript:top.content.location='{% url "private-collections" %}';ob_os(this);">
+          Private Collections
+        </a>
+        <ul>
+          {% for collection in doc.private.objects %}
+          <li>
+            <a target="list"
+               href="{% url "collection-objects" %}?id={{ collection.id }}"
+               onclick="javascript:top.content.location='{% url "collection-detail" %}?id={{ collection.id }}';ob_os(this);">
+              {{ collection.title }}
+            </a>
+            {% if collection.len %}({{ collection.len }}){% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <a href="{% url "nolist" %}" target="list" onclick="javascript:top.content.location='{% url "vh-collections" %}';ob_os(this);">
+      Visual History Collections
+    </a>
+    <ul>
+    {% for collection in vh.objects %}
+      <li>
+        <a target="list"
+           href="{% url "nolist" %}"
+           onclick="javascript:top.content.location='{% url "collection-detail" %}?id={{ collection.id }}';ob_os(this);">
+          {{ collection.title }}
+        </a>
+        {% if collection.len %}({{ collection.len }}){% endif %}
+        <ul>
+          {% for person in collection.objects %}
+          <li>
+            <a target="list"
+               href="{% url "nolist" %}"
+               onclick="javascript:top.content.location='{% url "person-detail" %}?id={{ person.id }}';ob_os(this);">
+              {{ person.title }}
+            </a>
+            <ul>
+              {% for segment in person.objects %}
+              <li>
+                <a target="list"
+                   href="{% url "interview-segments" %}?id={{ segment.id }}"
+                   onclick="javascript:top.content.location='{% url "interview-detail" %}?id={{ segment.id }}';ob_os(this);">
+                  {{ segment.title }}
+                </a>
+              </li>
+            {% endfor %}
+            </ul>
+          </li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% endfor %}
+    </ul>
+  </li>
+
+  <li>
+    <a href="{% url "nolist" %}" target="list" onclick="javascript:top.content.location='{% url "facilities" %}';ob_os(this);">
+      Incarceration Facilities
+    </a>
+    <ul>
+    {% for category in facilities %}
+      <li>
+        <a href="{% url "nolist" %}" target="list" onclick="javascript:top.content.location='{% url "facility-type" %}?id={{ category.id }}';ob_os(this);">
+          {{ category.title }}
+        </a>
+        <ul>
+          {% for item in category.objects %}
+          <li>
+            <a target="list"
+               href="{% url "facility-objects" %}?id={{ item.id }}"
+               onclick="javascript:top.content.location='{% url "facility-detail" %}?id={{ item.id }}';ob_os(this);">
+              {{ item.title }} ({{ item.len }})
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% endfor %}
+    </ul>
+  </li>
+
+  <li>
+    <a href="{% url "nolist" %}" target="list" onclick="javascript:top.content.location='../Static/NewspaperCollections.aspx';ob_os(this);">
+      Camp Newspaper Collections
+    </a>
+    <ul>
+{% for item in campnews %}     
+      <li>
+        <a target="list"
+           href="{% url "collection-objects" %}?id={{ item.id }}"
+           onclick="javascript:top.content.location='{% url "collection-detail" %}?id={{ item.id }}';ob_os(this);">
+          {{ item.title }}
+          {% if item.len %}({{ item.len }}){% endif %}
+        </a>
+      </li>
+{% endfor %}
+    </ul>
+  </li>
+  <li>
+    <a href="{% url "nolist" %}" target="list" onclick="javascript:top.content.location='{% url "search-form" %}';ob_os(this);">Search</a>
+  </li>
+
+</ul>
